@@ -306,6 +306,23 @@ export function setup(helper) {
       ["br"]
     ].concat(contents)
   );
+  
+  replaceBBCode("loom", contents =>
+    [
+      ["iframe", 
+        { 
+          height: "420", 
+          width: "100%", 
+          src: contents,
+          frameborder: "0",
+          webkitallowfullscreen,
+          mozallowfullscreen,
+          allowfullscreen
+        }
+      ]
+    ]
+  );
+      
 
   replaceBBCode("indent", contents => ["blockquote", ["div"].concat(contents)]);
 
