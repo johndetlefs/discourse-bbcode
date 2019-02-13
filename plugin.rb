@@ -1,7 +1,7 @@
-# name: discourse-bbcode
-# about: adds BBCode to Discourse
+# name: discourse-video-embed
+# about: adds Loom embed code to editor
 # version: 0.1
-# authors: Régis Hanol, Sam Saffron
-# url: https://github.com/discourse/discourse-bbcode
+# authors: John Detlefs
+# url: https://github.com/johndetlefs/discourse-bbcode
 
 register_asset "stylesheets/bbcode.scss"
