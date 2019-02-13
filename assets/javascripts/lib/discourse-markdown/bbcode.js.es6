@@ -23,7 +23,7 @@ function replaceVideoLoom(text) {
     (text = text.replace(
       /\[loom=([^\]]+)\]((?:(?!\[loom=[^\]]+\]|\[\/loom\])[\S\s])*)\[\/loom\]/gi,
       function(match, p1, p2) {
-        return `<div style="position: relative; padding-bottom: 62.5%; height: 0;"><iframe height="420" width="100%" src='https://www.useloom.com/embed/${p2}' frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>`;
+        return `<iframe height="420" width="100%" src='https://www.useloom.com/embed/${p2}' frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`;
       }
     ))
   );
@@ -104,6 +104,11 @@ function setupMarkdownIt(md) {
   ruler.push("highlight", {
     tag: "highlight",
     wrap: "span.highlight"
+  });
+  
+  ruler.push("loom", {
+    tag: "loom",
+    wrap: "div"
   });
 
   ruler.push("small", {
