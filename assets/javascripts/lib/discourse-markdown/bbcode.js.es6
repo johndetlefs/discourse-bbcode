@@ -17,6 +17,19 @@ function replaceFontColor(text) {
   return text;
 }
 
+function replaceVideoLoom(text) {
+  while (
+    text !==
+    (text = text.replace(
+      /\[loom=([^\]]+)\]((?:(?!\[loom=[^\]]+\]|\[\/loom\])[\S\s])*)\[\/loom\]/gi,
+      function(match, p1, p2) {
+        return `<div style="position: relative; padding-bottom: 62.5%; height: 0;"><iframe height="420" width="100%" src="${p1}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>`;
+      }
+    ))
+  );
+  return text;
+}
+
 function replaceFontSize(text) {
   while (
     text !==
@@ -294,6 +307,7 @@ export function setup(helper) {
   helper.addPreProcessor(replaceFontColor);
   helper.addPreProcessor(replaceFontSize);
   helper.addPreProcessor(replaceFontFace);
+  helper.addPreProcessor(replaceVideoLoom);
 
   register("aname", (contents, param) =>
     ["a", { name: param, "data-bbcode": true }].concat(contents)
