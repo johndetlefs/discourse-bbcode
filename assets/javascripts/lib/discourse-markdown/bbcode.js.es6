@@ -1,15 +1,25 @@
-import { registerOption } from 'pretty-text/pretty-text';
-
-registerOption((siteSettings, opts) => {
-  opts.features['discourse-markdown'] = true;
-});
-
-function piratize (text) {
-  return text.replace(/\b(am|are|is)\b/ig, "be")
-             .replace(/ing\b/ig, "in'")
-             .replace(/v/ig, "'");
-}
+import { registerOption } from "pretty-text/pretty-text";
 
 export function setup(helper) {
-  helper.addPreProcessor(piratize);
+  
+  if(!helper.markdownIt) { return; }
+
+  helper.whiteList([
+    "div.highlight"
+  ]);
+
+  helper.replaceBlock({
+    start: /\[loom\]/gim,
+    stop: /\[\/loom\]/gim,
+    emitter(blockContents, matches) {
+
+      const contents = [
+        "div",
+        ["iframe", { src: "https://www.useloom.com/embed/960b7d02424a4cbf81a503eb34a158bb" }]
+      ];
+      console.log("We got here!");
+      return contents;
+    }
+  });
+         
 }
