@@ -1,9 +1,15 @@
-  Discourse.Dialect.replaceBlock({
-    
-    start: '[loom]',
-    stop: '[/loom]',
-    
-    emitter: function(contents) {
-      return "div", { "data-bbcode": true }, contents;
-    }
-  });
+import { registerOption } from 'pretty-text/pretty-text';
+
+registerOption((siteSettings, opts) => {
+  opts.features['discourse-markdown'] = true;
+});
+
+function piratize (text) {
+  return text.replace(/\b(am|are|is)\b/ig, "be")
+             .replace(/ing\b/ig, "in'")
+             .replace(/v/ig, "'");
+}
+
+export function setup(helper) {
+  helper.addPreProcessor(piratize);
+}
