@@ -367,15 +367,14 @@ export function setup(helper) {
     contents
   ]);
   
-  helper.replaceBlock({
-  start: '[loom]',
-  stop: '[/loom]',
-  rawContents: true,
+  Discourse.Dialect.replaceBlock({
+    
+    start: /\[loom\]([\s\S]*)/gim,
+    stop: /\[\/loom\]/gim,
+    
+    emitter: function(contents) {
 
-  emitter: function(contents) {
-    // don't process Markdown inside of [mtg]
-    return 
-      [
+      const blockContents = [
         "div",
         ["iframe", 
           { 
@@ -385,11 +384,13 @@ export function setup(helper) {
             frameborder: "0",
             webkitallowfullscreen,
             mozallowfullscreen,
-            allowfullscreen,
-            "data-bbcode": true
+            allowfullscreen
           }
         ]
-      ]
+      ];
+
+      return blockContents;
+
     }
   });
 
