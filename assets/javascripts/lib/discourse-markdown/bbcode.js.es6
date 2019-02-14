@@ -1,5 +1,21 @@
 import { registerOption } from "pretty-text/pretty-text";
 
+function loomVideo(md) {
+  
+  console.log("something happened!");
+  
+  md.inline.bbcode.ruler.push('loom',{
+    tag: 'loom',
+    replace: function(state, tagInfo, content) {
+      let token = state.push('html_raw', '', 0);
+      const escaped = state.md.utils.escapeHtml(content);
+      token.content = `<div><iframe src='${escaped}'></iframe></div>`;
+      return true;
+    }
+  });
+
+}
+
 export function setup(helper) {
   
   if(!helper.markdownIt) { return; }
@@ -8,18 +24,6 @@ export function setup(helper) {
     "div.highlight"
   ]);
 
-  helper.replaceBlock({
-    start: /\[loom\]/gim,
-    stop: /\[\/loom\]/gim,
-    emitter(blockContents, matches) {
-
-      const contents = [
-        "div",
-        ["iframe", { src: "https://www.useloom.com/embed/960b7d02424a4cbf81a503eb34a158bb" }]
-      ];
-      console.log("We got here!");
-      return contents;
-    }
-  });
+  helper.registerPlugin(loomVideo);
          
 }
