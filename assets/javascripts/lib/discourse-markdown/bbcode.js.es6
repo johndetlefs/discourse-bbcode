@@ -105,11 +105,6 @@ function setupMarkdownIt(md) {
     tag: "highlight",
     wrap: "span.highlight"
   });
-  
-  ruler.push("loom", {
-    tag: "loom",
-    wrap: "div"
-  });
 
   ruler.push("small", {
     tag: "small",
@@ -342,6 +337,7 @@ export function setup(helper) {
   ]);
   rawBBCode("loom", contents =>
     [
+      "div",
       ["iframe", 
         { 
           height: "420", 
