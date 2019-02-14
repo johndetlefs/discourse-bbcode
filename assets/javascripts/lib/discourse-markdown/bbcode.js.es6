@@ -378,13 +378,13 @@ export function setup(helper) {
         "div",
         ["iframe", 
           { 
-            height: "420", 
-            width: "100%", 
-            src: contents,
-            frameborder: "0",
-            webkitallowfullscreen,
-            mozallowfullscreen,
-            allowfullscreen
+            "height": "420", 
+            "width": "100%", 
+            "src": contents,
+            "frameborder": "0",
+            "webkitallowfullscreen": true,
+            "mozallowfullscreen": true,
+            "allowfullscreen": true
           }
         ]
       ];
