@@ -366,6 +366,32 @@ export function setup(helper) {
     { href: "http://www.google.com/search?q=" + contents, "data-bbcode": true },
     contents
   ]);
+  
+  helper.replaceBlock({
+  start: '[loom]',
+  stop: '[/loom]',
+  rawContents: true,
+
+  emitter: function(contents) {
+    // don't process Markdown inside of [mtg]
+    return 
+      [
+        "div",
+        ["iframe", 
+          { 
+            height: "420", 
+            width: "100%", 
+            src: contents,
+            frameborder: "0",
+            webkitallowfullscreen,
+            mozallowfullscreen,
+            allowfullscreen,
+            "data-bbcode": true
+          }
+        ]
+      ]
+    }
+  });
 
   helper.replaceBlock({
     start: /\[list=?(\w)?\]([\s\S]*)/gim,
