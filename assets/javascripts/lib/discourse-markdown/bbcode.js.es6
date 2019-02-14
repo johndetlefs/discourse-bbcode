@@ -329,7 +329,7 @@ export function setup(helper) {
   helper.addPreProcessor(replaceFontColor);
   helper.addPreProcessor(replaceFontSize);
   helper.addPreProcessor(replaceFontFace);
-  helper.addPreProcessor(replaceVideoLoom);
+  // helper.addPreProcessor(replaceVideoLoom);
 
   register("aname", (contents, param) =>
     ["a", { name: param, "data-bbcode": true }].concat(contents)
