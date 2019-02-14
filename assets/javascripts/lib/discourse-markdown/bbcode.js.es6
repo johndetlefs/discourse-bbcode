@@ -8,7 +8,7 @@ function embedVideo(md) {
     replace: function(state, tagInfo, content) {
       let token = state.push('html_raw', '', 0);
       const escaped = state.md.utils.escapeHtml(content);
-      token.content = `<div><iframe src='${escaped}'></iframe></div>`;
+      token.content = `<div><iframe width="100%" height="420" src='${escaped}' allowfullscreen></iframe></div>`;
       return true;
     }
   });
